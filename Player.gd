@@ -1,5 +1,7 @@
 extends Area2D
 
+signal hit
+
 export (int) var speed	# how fast the player will move (pixel/sec)
 var screensize	# Size of the game window
 
@@ -38,3 +40,14 @@ func _process(delta):
 	elif velocity.y != 0:
 	    $AnimatedSprite.animation = "up"
 	    $AnimatedSprite.flip_v = velocity.y > 0
+
+
+func _on_Player_body_entered(body):
+	hide() # Player disappears after being hit.
+	emit_signal("hit")
+	$CollisionShape2D.disabled = true
+
+func start(pos):
+    position = pos
+    show()
+    $CollisionShape2D.disabled = false
