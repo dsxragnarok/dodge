@@ -5,7 +5,7 @@ signal start_game
 func show_message(text):
 	$MessageLabel.text = text
 	$MessageLabel.show()
-	$MessageLabel.start()
+	$MessageTimer.start()
 
 func show_game_over():
 	show_message("Game Over")
